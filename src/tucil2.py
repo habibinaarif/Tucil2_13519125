@@ -1,5 +1,24 @@
 import os
 
+# fungsi untuk menghitung derajat setiap simpul
+def derajat(arr):
+    return [len(arr[i])-1 for i in range(len(arr))]
+
+# prosedur menghapus elemen dalam array
+def hapus(el, arr):
+    # menghapus simpul
+    for i in range(len(arr)):
+        if arr[i][0] == el:
+            arr.pop(i)
+            break
+
+    # menghapus busur simpul
+    for i in range(len(arr)):
+        for j in range(len(arr[i])):
+            if arr[i][j] == el:
+                arr[i].pop(j)
+                break
+
 # menerima input dari folder test
 cur_dir = os.path.dirname(os.path.realpath(__file__))
 new_dir = cur_dir[:len(cur_dir)-3]+'test\\'
@@ -17,7 +36,8 @@ for row in baris:
 order = []
 while len(kode) > 0:
 
-    degree = [len(kode[i])-1 for i in range(len(kode))] # Menghitung derajat setiap matkul
+    # menghitung derajat simpul
+    degree = derajat(kode)
 
     # Mengambil yang derajatnya 0 dan tambahkan ke order
     ambil = []
@@ -28,15 +48,7 @@ while len(kode) > 0:
 
     # Menghapus kode mata kuliah yang diambil
     for a in ambil:
-        for i in range(len(kode)):
-            for j in range(1,len(kode[i])):
-                if kode[i][j] == a:
-                    kode[i].pop(j)
-                    break
-        for i in range(len(kode)):
-            if kode[i][0] == a:
-                kode.pop(i)
-                break
+        hapus(a,kode)
   
 # Menuliskan keluaran program           
 for i in range(len(order)):
