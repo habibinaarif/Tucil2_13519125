@@ -56,3 +56,6 @@ for i in range(len(order)):
     for j in range(len(order[i])-1):
         print(order[i][j], end = ', ')
     print(order[i][len(order[i])-1])
+
+# menerima sembarang input agar dapat menampilkan output pada file .exe
+dummy = input() 
